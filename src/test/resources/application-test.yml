@@ -8,6 +8,9 @@ spring:
     password: ${DB_PASSWORD:chatpassword}
     driver-class-name: org.h2.Driver
 
+  flyway:
+    enabled: false
+
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -17,9 +20,6 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
 
-    flyway:
-      enabled: false
-
 jwt:
-  secret: ${JWT_SECRET:long-256-bit-secret-key}
+  secret: ${JWT_SECRET:dGhpcy1pcy1hLXZlcnktc2VjcmV0LWtleS1mb3ItdGVzdGluZy1wdXJwb3Nlcw==}
   expiration: 86400000
