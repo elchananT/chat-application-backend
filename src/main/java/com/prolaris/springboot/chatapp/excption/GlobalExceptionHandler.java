@@ -2,10 +2,13 @@ package com.prolaris.springboot.chatapp.excption;
 
 import com.prolaris.springboot.chatapp.auth.exceptions.InvalidCredentialsException;
 import com.prolaris.springboot.chatapp.auth.exceptions.UserAlreadyExistException;
+import com.prolaris.springboot.chatapp.rooms.exceptions.RoomAlreadyExistException;
+import com.prolaris.springboot.chatapp.rooms.exceptions.RoomNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
@@ -35,5 +38,16 @@ public class GlobalExceptionHandler {
    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(500, ex.getMessage(), null));
+   }
+
+   @ExceptionHandler(RoomAlreadyExistException.class)
+    public ResponseEntity<ErrorResponse> handleRoomAlreadyExistException(RoomAlreadyExistException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(409, ex.getMessage(), null));
+   }
+
+   @ResponseStatus(HttpStatus.BAD_REQUEST)
+   @ExceptionHandler(RoomNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleRoomNotFoundException(RoomNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(404, ex.getMessage(), null));
    }
 }

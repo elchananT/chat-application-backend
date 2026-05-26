@@ -2,6 +2,7 @@ CREATE TABLE rooms (
     id UUID PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(500),
+    is_private BOOLEAN NOT NULL DEFAULT FALSE,
     created_by UUID NOT NULL REFERENCES users(id),
     create_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
