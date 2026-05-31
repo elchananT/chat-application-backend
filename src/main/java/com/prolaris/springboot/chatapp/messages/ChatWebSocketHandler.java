@@ -1,6 +1,6 @@
 package com.prolaris.springboot.chatapp.messages;
 
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prolaris.springboot.chatapp.auth.security.jwt.JwtService;
 import com.prolaris.springboot.chatapp.auth.users.User;
 import com.prolaris.springboot.chatapp.auth.users.UserRepository;
